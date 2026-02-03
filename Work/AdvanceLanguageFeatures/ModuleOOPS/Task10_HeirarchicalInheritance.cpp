@@ -55,7 +55,7 @@ class Rectangle : public Shape{
             return length * width;
         }
         double perimeter() override{
-            return length + width;
+            return 2*(length + width);
         }
         void draw() override{
             std::cout<<"Drawing the shape of Rectangle! "<<std::endl;
