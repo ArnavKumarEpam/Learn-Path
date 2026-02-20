@@ -11,7 +11,7 @@ class InsufficientFundsException : public std::runtime_error{
     public:
         InsufficientFundsException(const std::string& accountNumber, double currentBalance, double requestedAmount) : 
             std::runtime_error("Insufficient funds"), accountNumber(accountNumber), currentBalance(currentBalance), requestedAmount(requestedAmount){
-            message = "Account: " + accountNumber + " having current balance: " + std::to_string(currentBalance) + " but requested amount: " + std::to_string(requestedAmount);
+            message = "Account: " + accountNumber + " having current balance: " + std::to_string(currentBalance) + " but requested amount: " + std::to_string(requestedAmount) + "\n";
         }
         
         const char* what() const noexcept override{
@@ -90,7 +90,7 @@ class BankAccount{
         BankAccount(std::string accountNumber,
         std::string holderName,
         double balance,
-        double withdrawalLimit = 5000,
+        double withdrawalLimit = 50000,
         double withdrawnAmount = 0) : accountNumber(accountNumber), holderName(holderName), balance(balance),
          withdrawalLimit(withdrawalLimit), withdrawnAmount(withdrawnAmount){
             if(this -> balance < 0) throw InvalidAmountException(balance, "Deposit");
@@ -144,7 +144,7 @@ class BankAccount{
 
 int main(){
     try{
-        BankAccount bankAccount("123456", "ABC", 3000, 5000, 0);
+        BankAccount bankAccount("123456", "ABC", 3000);
         
         bankAccount.deposit(2000);
         bankAccount.withdraw(1500);
@@ -153,32 +153,32 @@ int main(){
     }catch (...) {std::cout<<"Something unexpected occured! \n";}
     
     try{
-        BankAccount bankAccount("123456", "ABC", 3000, 5000, 0);
-        BankAccount recipient("654321", "DEF", 2000, 5000, 0);
+        BankAccount bankAccount("123456", "ABC", 3000);
+        BankAccount recipient("654321", "DEF", 2000);
         bankAccount.transferTo(recipient, 1500);
     }
     catch (const std::logic_error& e){std::cout<<e.what();}
     try{
-        BankAccount bankAccount("123456", "ABC", 3000, 5000, 0);
+        BankAccount bankAccount("123456", "ABC", 3000);
         bankAccount.withdraw(4000);
     }
     catch (const InsufficientFundsException& e){std::cout<<e.what();}
     try{
-        BankAccount bankAccount("123456", "ABC", 3000, 5000, 0);
+        BankAccount bankAccount("123456", "ABC", 3000);
         bankAccount.deposit(-1000);
     }
     catch (const InvalidAmountException& e){std::cout<<e.what();}
 
     catch (const AccountNotFoundException& e){std::cout<<e.what();}
     try{
-        BankAccount bankAccount("123456", "ABC", 3000, 5000, 0);
+        BankAccount bankAccount("123456", "ABC", 3000, 5000);
         bankAccount.deposit(4000);
         bankAccount.withdraw(7000);
     }
     catch (const TransactionLimitExceededException& e){std::cout<<e.what();}
     try{
-        BankAccount bankAccount("123456", "ABC", 3000, 5000, 0);
-        bankAccount.deposit(1000000);
+        BankAccount bankAccount("123456", "ABC", 3000);
+        bankAccount.deposit(10000000);
     }
     catch (const BankSystemException& e){std::cout<<e.what();}
 

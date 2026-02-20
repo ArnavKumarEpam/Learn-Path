@@ -32,7 +32,7 @@ class SmartPhone : public Phone, public Camera{
         SmartPhone(int id) : Device(id), Phone(), Camera(){ // SmartPhone constructor calling Device constructor
             std::cout<<"SmartPhone class Constructor! "<<std::endl;
         }
-        void showDeviceInfo(){ // this function demonstrates only one copy is there of device among smartPhone, Phone and Camera
+        void showDeviceInfo(){ // this funwction demonstrates only one copy is there of device among smartPhone, Phone and Camera
             std::cout<<"Accessing information via SmartPhone: "<<std::endl;
             SmartPhone::showAddressId();
 
