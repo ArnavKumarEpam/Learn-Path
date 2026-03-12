@@ -60,8 +60,8 @@ class PatientVitalMonitor {
             strcpy(patientId, Id);
             heartRateData = new int[36000];
             MedicalMemoryTracker::recordAllocation("Heart Rate Buffer", 36000 * sizeof(int));
-            bloodPressureData = new float[36000];
-            MedicalMemoryTracker::recordAllocation("Blood Pressure Buffer", 36000 * sizeof(float));
+            bloodPressureData = new float[18000];
+            MedicalMemoryTracker::recordAllocation("Blood Pressure Buffer", 18000 * sizeof(float));
             connecToMedicalDevice();
             calibrateSensors();
         }
@@ -89,7 +89,7 @@ class PatientVitalMonitor {
         }
         void monitorPatientVitals(int durationMinutes){
             if (durationMinutes <= 0) {
-                throw std::invalid_argument("E001: Monitoring duration must be positive!");
+                throw std::invalid_argument("E001: Monitoring duration must be positive! \n");
             }
             float *ecgAnalysisBuffer = new float[5000];
             MedicalMemoryTracker::recordAllocation("ECG Analysis Buffer Allocation", 5000 * sizeof(float));
@@ -148,6 +148,9 @@ int main(){
                 emergencyMonitor -> monitorPatientVitals(10);
             }
             catch (const PatientDataException& e){
+                std::cout<<e.what();
+            }
+            catch(const std::invalid_argument &e){
                 std::cout<<e.what();
             }
         }

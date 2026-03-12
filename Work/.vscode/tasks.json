@@ -6,6 +6,7 @@
             "type": "shell",
             "command": "g++",
             "args": [
+                "-std=c++17",
                 "Introduction.cpp",
                 "-o",
                 "Introduction",
@@ -35,6 +36,7 @@
             "label": "C/C++: g++.exe build active file",
             "command": "C:\\MinGW\\bin\\g++.exe",
             "args": [
+                "-std=c++17",
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
