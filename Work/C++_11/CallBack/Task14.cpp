@@ -9,4 +9,5 @@ int main(){
     auto incRef = [&counter]() { counter++; };
     incRef();
     std::cout << "After incRef() (by reference): counter = " << counter << std::endl; // Expect 1
+    
 }

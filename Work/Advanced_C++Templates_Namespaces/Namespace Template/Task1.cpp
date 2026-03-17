@@ -14,4 +14,5 @@ int main(){
     Geometry::Point p(3, 4); 
     Geometry::printPoint(p);
     
+    
 }

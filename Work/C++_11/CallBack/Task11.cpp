@@ -2,6 +2,7 @@
 
 int main(){
     int counter = 0;
+    // cause the functor  makes operator() const with mutable we can modify inside it
     auto next = [counter]() mutable { // mutable keyword allows modification of the capture value
         counter++;
         return counter;
