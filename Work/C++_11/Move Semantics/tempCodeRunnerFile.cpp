@@ -1,0 +1,3 @@
+  ~MyString(){
+            delete [] data;
+        }
