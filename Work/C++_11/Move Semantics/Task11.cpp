@@ -54,7 +54,7 @@ class MyString{
 
 int main(){
     std::vector<MyString> vec;
-    vec.reserve(10);
+    // vec.reserve(10);
     MyString a("first");
     MyString b("second");
 
