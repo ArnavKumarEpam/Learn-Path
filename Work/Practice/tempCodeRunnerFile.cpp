@@ -1,3 +1,4 @@
- cout<<student.getName()<<endl;
-    cout<<student.getRollNo()<<endl;
-    cout<<student.getGrade()<<endl;
+class Burger{
+    public:
+        virtual void prepare() = 0; 
+};
